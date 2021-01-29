@@ -16,9 +16,7 @@ app.use(cors());
 
 // Directorio publico
 app.use(express.static('public'));
-app.get('*', ( req, res ) => {
-    res.sendFile( path.join( __dirname+'/public/index.html' ) );
-});
+
 
 //lectura y parseo del body
 app.use( express.json() );
@@ -26,6 +24,10 @@ app.use( express.json() );
 //Rutas
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
+
+app.get('*', ( req, res ) => {
+    res.sendFile( path.join( __dirname+'/public/index.html' ) );
+});
 
 
 app.listen( process.env.PORT, () => {
